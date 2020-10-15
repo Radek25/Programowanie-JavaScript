@@ -1,3 +1,112 @@
-body{
-    background-color: blue;
+*{box-sizing: border-box;}
+body
+{
+    margin: 0px;
+    padding: 0px;
+}
+#main
+{
+    width: 100%;
+    height: 100%;
+    background-image: url(Zdjęcia/tło31.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    overflow: hidden;
+    padding: 0px;
+}
+#pictureBacground{
+    width: 900px;
+    height: 530px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+.galeria
+{
+    width: 900px;
+    height: 550px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+}
+.lightbox
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+}
+.visible
+{
+    display: block;
+}
+.close
+{
+    width: 50px;
+    height: 42px;
+    margin-left: 90%;
+    margin-top: 20px;
+    font-size: 40px;
+    color: white;
+    opacity: 0.2;
+    text-align: center;
+}
+.others
+{
+    width: 60%;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.prev
+{
+    width: 50px;
+    height: 42px;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    opacity: 0.5;
+}
+.img
+{
+    width: 600px;
+    height: 400px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.next
+{
+    width: 50px;
+    height: 42px;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    opacity: 0.5;
+}
+a:link
+{
+    color: white;
+}
+a:visited
+{
+    color: white;
+}
+a:active
+{
+    color: white;
 }
