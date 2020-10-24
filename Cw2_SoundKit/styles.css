@@ -1,0 +1,78 @@
+body{
+    background-color:#3f3f3f;
+    height: 100%;
+}
+#container{
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: auto;
+    margin-left: auto;
+    /* background-color: yellow; */
+}
+#logo{
+    width: 20%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    /* background-color: red; */
+}
+#drumsquare{
+    width: 65%;
+    height: 450px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    border-radius: 10px;
+    border-color: white;
+    border-style: solid;
+    /* background-color: red; */
+    display: flex;
+    flex-wrap: nowrap;
+}
+#bitboxsquare{
+    width:  460px;
+    height: 95%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* background-color: green; */
+}
+.elements{
+    width: 130px;
+    height: 130px;
+    background-color: #202020;
+    margin: 5px;
+    border-radius: 10px;
+}
+#recordsquare{
+    width: 30%;
+    height: 95%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    /* opacity: 0.5; */
+    background-color: #37c8c0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.recordfield{
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #202020;
+    margin-top: 5px;
+}
+audio{
+    display: none;
+}
