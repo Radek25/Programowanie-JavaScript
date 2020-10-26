@@ -60,19 +60,45 @@ body{
     margin-left: 20px;
     margin-right: 10px;
     border-radius: 10px;
-    /* opacity: 0.5; */
-    background-color: #37c8c0;
+    opacity: 0.7;
+    /* background-color: #37c8c0; */
+    background-color: greenyellow;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .recordfield{
     width: 90%;
-    height: 50px;
+    height: 40px;
     border-radius: 10px;
     background-color: #202020;
-    margin-top: 5px;
+    margin-top: 10px;
+}
+#metronome{
+    width: 90%;
+    height: 100px;
+    margin-top: 10px;
+    background-color:#202020;
+    border-radius: 10px;
 }
 audio{
     display: none;
+}
+span{
+    display: block;
+    color: white;
+    margin: 5px;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Grandstander', cursive;
+}
+small{
+    display: block;
+    color: white;
+    margin: 5px;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+    font-family: 'Rubik', sans-serif;
 }
