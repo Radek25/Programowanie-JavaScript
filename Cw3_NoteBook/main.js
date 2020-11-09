@@ -1,93 +1,102 @@
-// 1.Menu opcji
-let isOpen = false;
-const openButton = document.querySelector('#menu2');
-openButton.addEventListener('click', openMenu);
-const nav = document.querySelector('#navField');
+//Array with data
+let ContentArray = [];
+const storageKey = 'notesFromJs';
+//Get notes from local storage
+ContentArray.push(...getToLocalStorage());
+console.log(ContentArray);
 
-function openMenu() {
-    if (isOpen) {
-        nav.classList.remove('active');
-        isOpen = false;
-    } else {
-        nav.classList.add('active');
-        isOpen = true;
-    }
+//Adding new div
+const AddButton = document.querySelector('#sendNoteButton');
+const NotesBoard = document.querySelector('#notesBoard');
+AddButton.addEventListener('click', AddNewDiv);
+
+//Show all notes from ContentAray
+for (let index = 0; index < ContentArray.length; index++) {
+    AddNewDivToNotesBorder(ContentArray[index]);
 }
 
-// 2.Dodawnie notatek
-const notion = [];
+function AddNewDiv() {
+    //Data value
+    const content = {id: new Date().getTime(), date: null, title: null, message: null };
 
-let empty = false;
-
-//Dodawanie treści do tablicy
-const addButton = document.querySelector('.fa-plus-square');
-const formWindow = document.querySelector('#form');
-let title = document.getElementById('title').value;
-let content = document.getElementById('content').value;
-addButton.addEventListener('click', addTitleAndMessageToNotion);
-function addTitleAndMessageToNotion() {
-    formWindow.style.visibility = 'visible';
-    const addNoteButton = document.querySelector('button');
-    addNoteButton.addEventListener('click', addNoteFromForm);
-    function addNoteFromForm() {
-        const newNotion = {
-            title,
-            content,
-            id: notion.length  == 0 ? 0 : notion[notion.length - 1].id + 1
-        };
-        notion.push(newNotion);
-        formWindow.style.visibility = 'hidden';
-        createDiv(newNotion);
-    }
+    //Data setting
+    let date = new Date();
+    //Adding title and message to array
+    let title = document.querySelector('#titleOfNote').value;
+    let message = document.querySelector('#textareaOfNote').value;
+    content.date = `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
+    content.title = title;
+    content.message = message;
+    ContentArray.push(content);
+    //ContentArray[ContentArray.length -1];
+    AddNewDivToNotesBorder(content);
+    setToLocalStorage();
 }
-  
-function createDiv(newNotionToAdd) {
-    empty = true;
-    //Napis - brak notatek 
-    if (empty == true) {
-        const noNote = document.querySelector('#info');
-        noNote.style.display = 'none'; 
+
+function AddNewDivToNotesBorder(note) {
+    NotesBoard.style.visibility = 'visible';
+    const NewDiv = document.createElement('div');
+    NewDiv.classList.add('notes');
+    NotesBoard.appendChild(NewDiv);
+
+    //Add menu option to div
+    const MenuOption = document.createElement('div');
+    MenuOption.classList.add('menuOption');
+    NewDiv.appendChild(MenuOption);
+    //Add data field
+    const DataField = document.createElement('div');
+    DataField.classList.add('dataField');
+    DataField.innerHTML = note.date;
+    MenuOption.appendChild(DataField);
+    //Add edit button
+    const Edit = document.createElement('div');
+    Edit.classList.add('editButton');
+    MenuOption.appendChild(Edit);
+    //Add remove button
+    let Remove = document.createElement('div');
+    Remove.classList.add('removeButton');
+    MenuOption.appendChild(Remove);
+
+    //Remove note function
+    Remove.addEventListener('click', RemoveNote);
+    function RemoveNote() {
+        NewDiv.remove();
+        RemoveNoteFromContentArray(note.id);
     }
 
-    //Tworzenie okienka notatki
-    const newNote = document.createElement('div');
-    newNote.id = `notion${newNotionToAdd.id}`;
-    newNote.classList.add('noteOption');
-    const div = document.querySelector('#mainBoard');
-    div.appendChild(newNote);
-    console.log('notatka stworzona');
-    console.log('w tablicy mamy to:', notion);
+    //Add content field
+    const ContentField = document.createElement('div');
+    ContentField.classList.add('contentField');
+    NewDiv.appendChild(ContentField);
+    //Add title field
+    const TitleField = document.createElement('div');
+    TitleField.classList.add('titleField');
+    TitleField.innerHTML = note.title;
+    ContentField.appendChild(TitleField);
+    //Add message field
+    const MessageField = document.createElement('div');
+    MessageField.classList.add('messageField');
+    MessageField.innerHTML = note.message;
+    ContentField.appendChild(MessageField);
+    console.log(ContentArray);
+}
 
-    //Usówanie notatek
-    let deleteFlag = false;
-    let deleteOption;
-    const deleteButton = document.querySelector('#removeNote');
-    deleteButton.addEventListener('click', deleteOptions);
-    
-    function deleteNote() {
-        console.log(newNote.id);
-        const notionElement = notion.find(element=>newNote.id === `notion${element.id}`);
-        const index = notion.indexOf(notionElement);
-        console.log(notion, index, notion.slice(index, 1));
-        newNote.remove();
-        notion.splice(index, 1);
+function setToLocalStorage() {
+    localStorage.setItem(storageKey, JSON.stringify(ContentArray));
+}
+function getToLocalStorage() {
+    const GetNotes = localStorage.getItem(storageKey);
+    if (GetNotes) {
+        return JSON.parse(GetNotes);
     }
-    
-    function deleteOptions() {
-        if (deleteFlag == false) {
-            deleteFlag = true;
+    return[];
+}
 
-            deleteOption = document.createElement('div');
-            deleteOption.classList.add('deleteOption');
-
-            deleteOption.addEventListener('click', deleteNote);
-
-            newNote.appendChild(deleteOption);
-        } else if (deleteFlag == true) {
-            deleteFlag = false;
-            console.log('usuwam!', deleteOption);
-            deleteOption.remove();
+function RemoveNoteFromContentArray(id) {
+    for (let i = 0; i < ContentArray.length; i++) {
+        if (ContentArray[i].id == id) {
+            ContentArray.splice(i,1);
         }
     }
+    setToLocalStorage();
 }
-
