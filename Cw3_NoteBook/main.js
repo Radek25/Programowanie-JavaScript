@@ -48,13 +48,11 @@ function AddNewDivToNotesBorder(note) {
     DataField.classList.add('dataField');
     DataField.innerHTML = note.date;
     MenuOption.appendChild(DataField);
-    //Add edit button
-    const Edit = document.createElement('div');
-    Edit.classList.add('editButton');
-    MenuOption.appendChild(Edit);
+
     //Add remove button
     let Remove = document.createElement('div');
     Remove.classList.add('removeButton');
+    Remove.innerHTML = '<i class="far fa-times-circle"></i>';
     MenuOption.appendChild(Remove);
 
     //Remove note function
