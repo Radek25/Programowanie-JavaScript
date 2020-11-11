@@ -3,7 +3,6 @@ let ContentArray = [];
 const storageKey = 'notesFromJs';
 //Get notes from local storage
 ContentArray.push(...getToLocalStorage());
-console.log(ContentArray);
 
 //Adding new div
 const AddButton = document.querySelector('#sendNoteButton');
@@ -21,10 +20,14 @@ function AddNewDiv() {
 
     //Data setting
     let date = new Date();
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let year = date.getFullYear();
+
     //Adding title and message to array
     let title = document.querySelector('#titleOfNote').value;
     let message = document.querySelector('#textareaOfNote').value;
-    content.date = `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`;
+    content.date = `${day}.${month}.${year}`;
     content.title = title;
     content.message = message;
     ContentArray.push(content);
