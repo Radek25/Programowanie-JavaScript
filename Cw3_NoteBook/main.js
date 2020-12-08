@@ -4,34 +4,33 @@ const storageKey = 'notesFromJs';
 //Get notes from local storage
 ContentArray.push(...getToLocalStorage());
 
-//Adding new div
+
+//Button of new note
 const AddButton = document.querySelector('#sendNoteButton');
 const NotesBoard = document.querySelector('#notesBoard');
-AddButton.addEventListener('click', AddNewDiv);
+AddButton.addEventListener('click', SendDataToVariable);
 
-//Show all notes from ContentAray
-for (let index = 0; index < ContentArray.length; index++) {
-    AddNewDivToNotesBorder(ContentArray[index]);
-}
 
-function AddNewDiv() {
+
+function SendDataToVariable() {
     //Data value
     const content = {id: new Date().getTime(), date: null, title: null, message: null };
 
-    //Data setting
+    //Date setting
     let date = new Date();
     let day = String(date.getDate()).padStart(2, '0');
     let month = String(date.getMonth() + 1).padStart(2, '0');
     let year = date.getFullYear();
+    //Adding date to array
+    content.date = `${day}.${month}.${year}`;
 
     //Adding title and message to array
-    let title = document.querySelector('#titleOfNote').value;
-    let message = document.querySelector('#textareaOfNote').value;
-    content.date = `${day}.${month}.${year}`;
-    content.title = title;
-    content.message = message;
+    content.title = document.querySelector('#titleOfNote').value;
+    content.message  = document.querySelector('#textareaOfNote').value;
+    
+    //Adding variable content to array ContantArray
     ContentArray.push(content);
-    //ContentArray[ContentArray.length -1];
+
     AddNewDivToNotesBorder(content);
     setToLocalStorage();
 }
@@ -79,7 +78,6 @@ function AddNewDivToNotesBorder(note) {
     MessageField.classList.add('messageField');
     MessageField.innerHTML = note.message;
     ContentField.appendChild(MessageField);
-    console.log(ContentArray);
 }
 
 function setToLocalStorage() {
@@ -100,4 +98,9 @@ function RemoveNoteFromContentArray(id) {
         }
     }
     setToLocalStorage();
+}
+
+//Show all notes from ContentAray
+for (let index = 0; index < ContentArray.length; index++) {
+    AddNewDivToNotesBorder(ContentArray[index]);
 }
