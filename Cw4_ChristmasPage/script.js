@@ -25,3 +25,18 @@ function CreateSnowFlake(SnowBox) {
 const SnowBox = CreateSnowBox();
 CreateSnowFlake(SnowBox);
 
+//COUNTER//
+let date = new Date('Dec 24, 2021 00:00:00').getTime();
+setInterval(() => {
+    let now = new Date().getTime();
+    let distance = date - now;
+    
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    //Display value
+    document.querySelector('#D').innerHTML = days;
+    document.querySelector('#H').innerHTML = hours;
+    document.querySelector('#M').innerHTML = minutes;
+}, 1000);
