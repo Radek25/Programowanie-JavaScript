@@ -1,3 +1,4 @@
+//SNOWFLAKES
 const Container = document.querySelector('#container');
 function CreateSnowBox() {
     const SnowBox = document.createElement('div');
@@ -39,4 +40,40 @@ setInterval(() => {
     document.querySelector('#D').innerHTML = days;
     document.querySelector('#H').innerHTML = hours;
     document.querySelector('#M').innerHTML = minutes;
+}, 1000);
+
+//SNOW FLOOR//
+const Bottom = document.createElement('div');
+Bottom.id = 'Bottom';
+Bottom.classList.add('Bottom');
+Container.appendChild(Bottom);
+
+
+
+const Snow = document.createElement('div');
+Snow.id = 'Snow';
+Snow.classList.add('Snow');
+Bottom.appendChild(Snow);
+
+let height = 0;
+const i = setInterval(() => {
+    height++;
+    Snow.style.height = height + 'px';
+    console.log(height);
+    if(height > 45)
+    {
+        clearInterval(i);
+
+        const Santa = document.createElement('div');
+        Santa.id = 'Santa';
+        Santa.classList.add('Santa');
+        const Img = document.createElement('img');
+        Img.setAttribute('src', 'imgs/santa.png');
+        Img.setAttribute('width', '250');
+        Img.setAttribute('height', '150');
+        Santa.appendChild(Img);
+        Bottom.appendChild(Santa);
+
+        console.log('Koniec!');
+    }
 }, 1000);
