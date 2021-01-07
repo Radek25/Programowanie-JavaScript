@@ -63,17 +63,16 @@ const i = setInterval(() => {
     if(height > 45)
     {
         clearInterval(i);
-
-        const Santa = document.createElement('div');
-        Santa.id = 'Santa';
-        Santa.classList.add('Santa');
-        const Img = document.createElement('img');
-        Img.setAttribute('src', 'imgs/santa.png');
-        Img.setAttribute('width', '250');
-        Img.setAttribute('height', '150');
-        Santa.appendChild(Img);
-        Bottom.appendChild(Santa);
-
-        console.log('Koniec!');
+        setInterval(() => {
+            const Santa = document.createElement('div');
+            Santa.id = 'Santa';
+            Santa.classList.add('Santa');
+            const Img = document.createElement('img');
+            Img.setAttribute('src', 'imgs/santa.png');
+            Img.setAttribute('width', '250');
+            Img.setAttribute('height', '150');
+            Santa.appendChild(Img);
+            Bottom.appendChild(Santa);
+        }, 10000);
     }
 }, 1000);
