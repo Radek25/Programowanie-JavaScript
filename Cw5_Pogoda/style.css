@@ -27,14 +27,14 @@ body{
     align-items: center;
     justify-content: center;
 }
-#weather{
+#weatherLocation{
     width: 75%;
     height: 45px;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 20px;
 }
-.fas{
+.fa-search{
     width: 30px;
     height: 30px;
     font-size: 30px;
@@ -49,7 +49,6 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* background-color: brown; */
 }
 .weatherbox{
     width: 200px;
@@ -67,12 +66,17 @@ body{
 .location{
     width: 90%;
     height: 40px;
-    background-color: green;
+    font-size: 25px;
+    color: white;
 }
 .temp{
-    width: 50%;
+    width: 70%;
     height: 65px;
-    background-color:red;
+    font-size: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .icon{
     width: 70%;
@@ -82,12 +86,38 @@ body{
 .info{
     width: 90%;
     height: 30px;
-    background-color: yellow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+.cloud{
+    width: 40%;
+    height: 30px;
+    margin-left: 5px;
+    font-size: 18px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-cloud{
+ margin-right: 5px;
+}
+.wind{
+    width: 45%;
+    height: 30px;
+    margin-right: 5px;
+    font-size: 18px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .date{
     width: 70%;
     height: 20px;
     background-color: orange;
 }
-/* Weatherbox Elements */
+/* Weatherbox Elements END */
 input:focus{outline: none;}
