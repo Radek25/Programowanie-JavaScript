@@ -4,7 +4,7 @@ const LSkey = 'Miasta';
 let CityArray = [];
 CityArray.push(...GetFromLocalStorage());
 
-const content = {city: null, country: null, temp: null, cloud: null, wind: null,};
+const content = {city: null, country: null, temp: null, cloud: null, wind: null, id: null};
 
 const contentbox = document.querySelector('#content');
 const searchIcon = document.querySelector('.fas');
@@ -43,7 +43,8 @@ function GetWeather(element){
             content.country = data.sys.country;
             content.temp = Math.floor((data.main.temp - 273.15), 2);
             content.cloud = data.clouds.all;
-            content.wind = data.wind.speed;
+            content.wind = Math.floor(data.wind.speed);
+            content.id = data.weather[0].icon;
             CreateDivWithInfo();
         });
 }
@@ -65,8 +66,9 @@ function CreateDivWithInfo(){
     weatherbox.appendChild(temp);
     temp.innerHTML = content.temp + ' &deg' + 'C';
 
-    const icon = document.createElement('div');
+    const icon = document.createElement('img');
     icon.classList.add('icon');
+    icon.src =  `http://openweathermap.org/img/wn/${content.id}@2x.png`;
     weatherbox.appendChild(icon);
 
     const info = document.createElement('div');
@@ -82,10 +84,6 @@ function CreateDivWithInfo(){
     wind.classList.add('wind');
     info.appendChild(wind);
     wind.innerHTML = '<i class="fas fa-wind"></i>' + content.wind + ' m/s';
-
-    const date = document.createElement('div');
-    date.classList.add('date');
-    weatherbox.appendChild(date);
 }
 
 //Funkcje Local Storage

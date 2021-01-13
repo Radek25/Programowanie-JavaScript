@@ -50,7 +50,7 @@ body{
     align-items: center;
 }
 .weatherbox{
-    width: 200px;
+    width: 230px;
     height: 300px;
     margin: 10px 10px 10px 10px;
     border-radius: 20px;
@@ -65,22 +65,24 @@ body{
 .location{
     width: 90%;
     height: 40px;
-    font-size: 25px;
+    margin-top: 10px;
+    font-size: 20px;
     color: white;
+    font-family: 'Comfortaa', cursive;
 }
 .temp{
     width: 70%;
-    height: 65px;
+    height: 55px;
     font-size: 50px;
+    font-family: 'Sofia', cursive;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .icon{
-    width: 70%;
-    height: 100px;
-    background-color:blue;
+    width: 150px;
+    height: 150px;
 }
 .info{
     width: 90%;
@@ -88,6 +90,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Comfortaa', cursive;
 }
 .cloud{
     width: 40%;
@@ -103,7 +106,7 @@ body{
  margin-right: 5px;
 }
 .wind{
-    width: 45%;
+    width: 37%;
     height: 30px;
     margin-right: 5px;
     font-size: 18px;
@@ -111,12 +114,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.date{
-    width: 70%;
-    height: 20px;
-    background-color: orange;
 }
 /* Weatherbox Elements END */
 input:focus{outline: none;}
