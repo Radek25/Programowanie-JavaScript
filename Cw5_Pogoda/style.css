@@ -1,16 +1,17 @@
 body{
-    width: 98vw;
+    width: 97vw;
     height: auto;
     min-height: 97vh;
-    background: linear-gradient(rgb(250, 108, 153) 0%, rgb(157, 140, 252) 50%, rgb(0, 200, 223) 100%);
+    background: linear-gradient(rgb(250, 108, 153) 5%, rgb(157, 140, 252) 60%, rgb(0, 200, 223) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 #container{
     width: 90%;
-    height: 90%;
-    /* background-color: red; */
+    height: 80%;
+    position: absolute;
+    top: 70px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -55,13 +56,23 @@ body{
     margin: 10px 10px 10px 10px;
     border-radius: 20px;
     border: 3px solid white;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 /* Weatherbox Elements */
+.deleteButton{
+    width: 95%;
+    height: 20px;
+    margin-left: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
 .location{
     width: 90%;
     height: 40px;

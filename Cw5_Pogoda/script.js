@@ -17,19 +17,33 @@ function LocationFromUserInput(){
 //Przycisk wyszukaj
 searchIcon.addEventListener('click', TakeData);
 
+//Wyszukaj Enter
+let input = document.querySelector('#weatherLocation');
+input.addEventListener('keyup', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        searchIcon.click();
+    }
+});
+
 function TakeData(){
-    CityArray.push(LocationFromUserInput());
+    //Dane przekazywane do LS
+    let id = new Date().getTime();
+    let city = LocationFromUserInput();
+    let data = {id: id, city: city};
+    //Dodanie danych do tablicy
+    CityArray.push(data);
+    //Przekazanie tablicy do LS
     SetToLocalStorage();
     contentbox.innerHTML ='';
     CityArray.forEach(element => GetWeather(element));
+    
 }
 
 CityArray.forEach(element => GetWeather(element));
 
 function GetWeather(element){
-
-    console.log(element);
-    let weather = `https://api.openweathermap.org/data/2.5/weather?q=${element}&lang=pl&APPID=${key}`;
+    let weather = `https://api.openweathermap.org/data/2.5/weather?q=${element.city}&lang=pl&APPID=${key}`;
 
     fetch(weather)
         .then(function(response){
@@ -38,24 +52,28 @@ function GetWeather(element){
         })
         //Przypisanie informacji pogodowych
         .then(function(data){
-            console.log(data);
             content.city = data.name;
             content.country = data.sys.country;
             content.temp = Math.floor((data.main.temp - 273.15), 2);
             content.cloud = data.clouds.all;
             content.wind = Math.floor(data.wind.speed);
             content.id = data.weather[0].icon;
-            CreateDivWithInfo();
+            CreateDivWithInfo(element);
         });
 }
 
-function CreateDivWithInfo(){
+function CreateDivWithInfo(element){
     const weatherbox = document.createElement('div');
     weatherbox.classList.add('weatherbox');
     contentbox.appendChild(weatherbox);
 
         
     //WeatherBox Elements
+    let deleteButton = document.createElement('div');
+    deleteButton.classList.add('deleteButton');
+    weatherbox.appendChild(deleteButton);
+    deleteButton.innerHTML = '<i class="far fa-times-circle"></i>';
+
     const location = document.createElement('div');
     location.classList.add('location');
     weatherbox.appendChild(location);
@@ -83,7 +101,21 @@ function CreateDivWithInfo(){
     const wind = document.createElement('div');
     wind.classList.add('wind');
     info.appendChild(wind);
-    wind.innerHTML = '<i class="fas fa-wind"></i>' + content.wind + ' m/s';
+    wind.innerHTML = '<i class="fas fa-wind"></i>' + content.wind + ' m/s';   
+
+    deleteButton.addEventListener('click', function W() {
+        weatherbox.remove();
+        RemoveCityFromCityArray(element.id);
+    });
+}
+
+function RemoveCityFromCityArray(id) {
+    for (let index = 0; index < CityArray.length; index++) {
+        if (CityArray[index].id == id) {
+            CityArray.splice(index,1);
+        }
+    }
+    SetToLocalStorage();
 }
 
 //Funkcje Local Storage
