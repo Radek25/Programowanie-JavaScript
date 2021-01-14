@@ -181,13 +181,6 @@ document
 async function playRecording1() {
     console.log('odtwarzam1');
 
-    // firstRecord.forEach(async (element) => {
-    //     playSound(element.index);
-    //     await setTimeout(() => {
-    //         pauseSound(element.index);
-    //     }, element.time);
-    // });
-
     for (let index = 0; index < firstRecord.length; index++) {
         recordElement = firstRecord[index];
         console.log(firstRecord);
@@ -200,62 +193,9 @@ async function playRecording1() {
                 resolve();
             }, recordElement.time)
         );
-        // await setTimeout(async () => {
-        //     await pauseSound(recordElement.index);
-        // }, recordElement.time);
     }
 }
 
-// //Druga ścieżka
-// document.querySelector('#recbutton2').addEventListener('click', Recording2);
-// function Recording2() {
-//     recordFlag2 = true;
-//     console.log('nagrywam2');
-// }
-
-// document.querySelector('#stopbutton2').addEventListener('click', stopRecording2);
-// function stopRecording2() {
-//     recordFlag2 = false;
-//     console.log('koniec nagrywania2');
-// }
-
-// document.querySelector('#playbutton2').addEventListener('click', playRecording2);
-// function playRecording2() {
-//     console.log('tu bedzie odtwarzane2');
-// }
-
-// //Trzecia ścieżka
-// document.querySelector('#recbutton3').addEventListener('click', Recording3);
-// function Recording3() {
-//     recordFlag3 = true;
-//     console.log('nagrywam3');
-// }
-
-// document.querySelector('#stopbutton3').addEventListener('click', stopRecording3);
-// function stopRecording3() {
-//     recordFlag3 = false;
-//     console.log('koniec nagrywania3');
-// }
-
-// document.querySelector('#playbutton3').addEventListener('click', playRecording3);
-// function playRecording3() {
-//     console.log('tu bedzie odtwarzane3');
-// }
-
-// //Czwarta ścieżka
-// document.querySelector('#recbutton4').addEventListener('click', Recording4);
-// function Recording4() {
-//     recordFlag4 = true;
-//     console.log('nagrywam4');
-// }
-
-// document.querySelector('#stopbutton4').addEventListener('click', stopRecording4);
-// function stopRecording4() {
-//     recordFlag4 = false;
-//     console.log('koniec nagrywania4');
-// }
-
-// document.querySelector('#playbutton4').addEventListener('click', playRecording4);
-// function playRecording4() {
-//     console.log('tu bedzie odtwarzane4');
-// }
+//Druga ścieżka
+//Trzecia ścieżka
+//Czwarta ścieżka
