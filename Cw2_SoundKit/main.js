@@ -187,12 +187,13 @@ async function playRecording1() {
         console.log(recordElement.index, recordElement.time);
         playSound(recordElement.index);
         
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                pauseSound(recordElement.index);
-                resolve();
-            }, recordElement.time)
-        );
+        // await new Promise((resolve) =>
+        //     setTimeout(() => {
+        //         pauseSound(recordElement.index);
+        //         resolve();
+        //     }, recordElement.time)
+        // );
+        //Jak to dobrze odtworzyć?!!!!
     }
 }
 
