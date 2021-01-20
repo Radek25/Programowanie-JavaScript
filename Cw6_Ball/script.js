@@ -2,6 +2,7 @@ let timer = document.querySelector('#timer');
 let playGround = document.querySelector('#playground');
 
 let RoundCounter = 1;
+let StartTimer;
 
 let HoleTop = 0;
 let HoleLeft = 0;
@@ -27,12 +28,12 @@ function ShowGame() {
         count = count -1;
         Count.innerHTML = count;
         if (count == 0) {
-            
             StartPage.style.visibility = 'hidden';
             clearInterval(Sec);
         }
         if (count == 1) {
             Timer();
+            StartTimer =  new Date().getTime();
         }
     }, 1000);
 }
@@ -115,11 +116,40 @@ acl.addEventListener('reading', () => {
         
         if ( IsInHoleTop && IsInHoleLeft) {
             IsGameEnded = true;
+            let StopTimer = new Date().getTime();
+            
+            document.querySelector('.count').style.display = 'none';
+            StartPage.style.visibility = 'visible';
+            let FinishTime = StopTimer - StartTimer;
+            let m = Math.floor(FinishTime/60000);
+            let s = Math.floor((FinishTime % 60000)/1000);
+
+            let PlayAgain = document.createElement('div');
+            PlayAgain.classList.add('playAgain');
+            StartPage.appendChild(PlayAgain);
+
+            let YourTime = document.createElement('div');
+            YourTime.classList.add('yourTime');
+            YourTime.innerHTML = 'Your Time';
+            PlayAgain.appendChild(YourTime);
+            let Time = document.createElement('div');
+            Time.classList.add('time');
+            Time.innerHTML = m + 'm ' + s+'s';
+            PlayAgain.appendChild(Time);
+            let Icon = document.createElement('div');
+            Icon.classList.add('icon2');
+            Icon.innerHTML = '<i class="fas fa-redo-alt"></i>';
+            PlayAgain.appendChild(Icon);
+
+            Icon.addEventListener('click', () => Again());
         }
-    }
-    else{
-        //
     }
 });
 
 acl.start();
+
+function Again() {
+    console.log('click!');
+    location.reload();
+}
+
