@@ -1,4 +1,6 @@
+let timer = document.querySelector('#timer');
 let playGround = document.querySelector('#playground');
+
 let RoundCounter = 1;
 
 let HoleTop = 0;
@@ -8,6 +10,49 @@ let IsGameEnded= false;
 let playGroundHeight = playGround.clientHeight;
 let playGroundWidth = playGround.clientWidth;
 
+let StartPage = document.querySelector('#startPage');
+let PlayButton = document.querySelector('#icon');
+let Sub = document.querySelector('#sub');
+PlayButton.addEventListener('click', () => ShowGame());
+
+function ShowGame() {
+    PlayButton.style.display = 'none';
+    Sub.style.display = 'none';
+    let Count = document.createElement('div');
+    Count.classList.add('count');
+    StartPage.appendChild(Count);
+
+    let count = 4;
+    let Sec = setInterval(() => {
+        count = count -1;
+        Count.innerHTML = count;
+        if (count == 0) {
+            
+            StartPage.style.visibility = 'hidden';
+            clearInterval(Sec);
+        }
+        if (count == 1) {
+            Timer();
+        }
+    }, 1000);
+}
+
+//TIME COUNTER
+function Timer() {
+    let totalSeconds = -1;
+    setInterval(countTimer, 1000);
+    function countTimer() {
+        ++totalSeconds;
+        let hour = Math.floor(totalSeconds /3600);
+        let minute = Math.floor((totalSeconds - hour*3600)/60);
+        let seconds = totalSeconds - (hour*3600 + minute*60);
+        if(minute < 10)
+            minute = '0' + minute;
+        if(seconds < 10)
+            seconds = '0' + seconds;
+        timer.innerHTML = minute + ' : ' + seconds;
+    }
+}
 
 function GetRandomFromToX(min, max) {
     min = Math.ceil(15);
@@ -57,7 +102,7 @@ acl.addEventListener('reading', () => {
         const top = ballTop + acl.y;
         const left = ballLeft - acl.x;
     
-        if(top > 0 && top < playGroundHeight){
+        if(top > 0 && top < playGroundHeight - 20){
             ball.style.top = top + 'px';
         }
     
